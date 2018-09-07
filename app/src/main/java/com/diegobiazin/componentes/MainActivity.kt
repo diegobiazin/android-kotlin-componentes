@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
@@ -36,7 +37,23 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
             toast.show()
         } else if (id == R.id.buttonSnackMe) {
-            Snackbar.make(constraintLayout, "Snack bar notification!", Snackbar.LENGTH_SHORT).show()
+            val snack = Snackbar.make(constraintLayout, "Snack bar notification!", Snackbar.LENGTH_SHORT)
+
+            snack.view.findViewById<TextView>(android.support.design.R.id.snackbar_text).setTextColor(Color.YELLOW)
+
+            //snack.view.setBackgroundColor(ContextCompat.getColor(this,R.color.colorAccent))
+            snack.view.setBackgroundColor(Color.RED)
+
+            //resources.getColor(R.color.colorAccent)
+            ContextCompat.getColor(this,R.color.colorAccent)
+
+            snack.setAction("Desfazer", {
+                Snackbar.make(constraintLayout, "Ação desfeita", Snackbar.LENGTH_SHORT).show()
+            })
+
+            snack.setActionTextColor(Color.YELLOW)
+
+            snack.show()
         }
     }
 
