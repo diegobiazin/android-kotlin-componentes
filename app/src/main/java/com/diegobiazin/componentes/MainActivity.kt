@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_main)
 
         setListeners()
+        loadSpinner()
     }
 
     override fun onClick(v: View) {
@@ -45,7 +47,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             snack.view.setBackgroundColor(Color.RED)
 
             //resources.getColor(R.color.colorAccent)
-            ContextCompat.getColor(this,R.color.colorAccent)
+            ContextCompat.getColor(this, R.color.colorAccent)
 
             snack.setAction("Desfazer", {
                 Snackbar.make(constraintLayout, "Ação desfeita", Snackbar.LENGTH_SHORT).show()
@@ -55,6 +57,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
             snack.show()
         }
+    }
+
+    private fun loadSpinner() {
+        val list = Mock.getList()
+
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, list)
+        spinnerDynamic.adapter = adapter
     }
 
     private fun setListeners() {
