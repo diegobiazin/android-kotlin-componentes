@@ -1,4 +1,4 @@
-package com.diegobiazin.componentes
+package com.diegobiazin.componentes.views
 
 import android.app.ProgressDialog
 import android.graphics.Color
@@ -6,9 +6,10 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
+import com.diegobiazin.componentes.R
+import com.diegobiazin.componentes.mock.Mock
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener, AdapterView.OnItemSelectedListener, SeekBar.OnSeekBarChangeListener {

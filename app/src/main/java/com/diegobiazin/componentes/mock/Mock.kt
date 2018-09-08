@@ -1,4 +1,4 @@
-package com.diegobiazin.componentes
+package com.diegobiazin.componentes.mock
 
 class Mock private constructor() {
 
