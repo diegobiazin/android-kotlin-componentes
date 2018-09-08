@@ -7,12 +7,13 @@ import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), View.OnClickListener {
+class MainActivity : AppCompatActivity(), View.OnClickListener, AdapterView.OnItemSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +57,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             snack.setActionTextColor(Color.YELLOW)
 
             snack.show()
+        } else if (id == R.id.buttonGetSpinner) {
+            //val value = spinnerDynamic.selectedItem.toString()
+            val value = spinnerDynamic.selectedItemPosition.toString()
+            Toast.makeText(this, value, Toast.LENGTH_LONG).show()
+
+        } else if (id == R.id.buttonSetSpinner) {
+            spinnerDynamic.setSelection(3)
         }
     }
 
@@ -69,5 +77,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private fun setListeners() {
         buttonToastMe.setOnClickListener(this)
         buttonSnackMe.setOnClickListener(this)
+        buttonGetSpinner.setOnClickListener(this)
+        buttonSetSpinner.setOnClickListener(this)
+
+        spinnerDynamic.onItemSelectedListener = this
+    }
+
+    override fun onNothingSelected(p0: AdapterView<*>?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+        val value: String = parent.getItemAtPosition(position).toString()
+        Toast.makeText(this, value, Toast.LENGTH_LONG).show()
     }
 }
